@@ -1,7 +1,16 @@
 <link rel="stylesheet" href="./leafletatxfloods.css" />
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
 
 <div id="mapid"></div>
+<form>
+  <input type="radio" name="status" value="on"> Open 
+  <input type="radio" name="status" value="off"> Closed
+  <input type="radio" name="status" value="all" checked> All
+</form>
 
 <script src="./leafletatxfloods.js"></script>
