@@ -64,9 +64,7 @@ var gj = {"type": "FeatureCollection", "features": [{"geometry": {"type": "Point
 
 var mymap = L.map('mapid').setView([30.264792,-97.747214], 13);
 
-var tileLayer = L.tileLayer.provider('Stamen.Toner',{detectRetina:true});
-tileLayer.tileSize = 128;
-tileLayer.addTo(mymap);
+L.tileLayer.provider('Stamen.Toner',{detectRetina:true}).addTo(mymap);
 
 
 L.geoJSON(gj, {pointToLayer:pointToLayer, onEachFeature:onEachFeature}).addTo(mymap);
