@@ -2140,22 +2140,36 @@ var mapboxglmap = new mapboxgl.Map({
 mapboxglmap.on('load', function () {
 
     mapboxglmap.addLayer({
-        "id": "crossings",
+        "id": "opencrossings",
         "type": "circle",
         "source": {
             "type": "geojson",
-            "data": "https://briaguya.github.io/leafletatxfloods/crossings.json"
+            "data": "https://briaguya.github.io/leafletatxfloods/opencrossings.json"
         },
         "paint": {
             "circle-radius": 10,
             "circle-color": "green",
+            "circle-opacity": 0.6,
+         }
+    });
+
+    mapboxglmap.addLayer({
+        "id": "closedcrossings",
+        "type": "circle",
+        "source": {
+            "type": "geojson",
+            "data": "https://briaguya.github.io/leafletatxfloods/closedcrossings.json"
+        },
+        "paint": {
+            "circle-radius": 10,
+            "circle-color": "red",
             "circle-opacity": 0.6
          }
     });
 
     // When a click event occurs on a feature in the places layer, open a popup at the
     // location of the feature, with name HTML from its properties.
-    mapboxglmap.on('click', 'crossings', function (e) {
+    mapboxglmap.on('click', 'opencrossings', function (e) {
         new mapboxgl.Popup()
             .setLngLat(e.features[0].geometry.coordinates)
             .setHTML(e.features[0].properties.name)
@@ -2163,12 +2177,53 @@ mapboxglmap.on('load', function () {
     });
 
     // Change the cursor to a pointer when the mouse is over the places layer.
-    mapboxglmap.on('mouseenter', 'crossings', function () {
+    mapboxglmap.on('mouseenter', 'opencrossings', function () {
         mapboxglmap.getCanvas().style.cursor = 'pointer';
     });
 
     // Change it back to a pointer when it leaves.
-    mapboxglmap.on('mouseleave', 'crossings', function () {
+    mapboxglmap.on('mouseleave', 'opencrossings', function () {
         mapboxglmap.getCanvas().style.cursor = '';
+    });
+
+
+    // When a click event occurs on a feature in the places layer, open a popup at the
+    // location of the feature, with name HTML from its properties.
+    mapboxglmap.on('click', 'closedcrossings', function (e) {
+        new mapboxgl.Popup()
+            .setLngLat(e.features[0].geometry.coordinates)
+            .setHTML(e.features[0].properties.name)
+            .addTo(mapboxglmap);
+    });
+
+    // Change the cursor to a pointer when the mouse is over the places layer.
+    mapboxglmap.on('mouseenter', 'closedcrossings', function () {
+        mapboxglmap.getCanvas().style.cursor = 'pointer';
+    });
+
+    // Change it back to a pointer when it leaves.
+    mapboxglmap.on('mouseleave', 'closedcrossings', function () {
+        mapboxglmap.getCanvas().style.cursor = '';
+    });
+});
+
+function showMapboxLayer(id) {
+  mapboxglmap.setLayoutProperty(id, 'visibility', 'visible');
+}
+function hideMapboxLayer(id) {
+  mapboxglmap.setLayoutProperty(id, 'visibility', 'none');
+}
+
+$(document).ready(function() {
+    $('input[type=radio][name=status]').change(function() {
+        hideMapboxLayer('opencrossings');
+        hideMapboxLayer('closedcrossings');
+        if(this.value === "all") {
+          showMapboxLayer('opencrossings');
+          showMapboxLayer('closedcrossings');
+          return;
+        }
+        if (this.value == "on") showMapboxLayer('opencrossings');
+        if (this.value == "off") showMapboxLayer('closedcrossings');
     });
 });
