@@ -2140,7 +2140,7 @@ var mapboxglmap = new mapboxgl.Map({
 mapboxglmap.on('load', function () {
 
     mapboxglmap.addLayer({
-        "id": "points",
+        "id": "crossings",
         "type": "circle",
         "source": {
             "type": "geojson",
@@ -2151,5 +2151,24 @@ mapboxglmap.on('load', function () {
             "circle-color": "green",
             "circle-opacity": 0.6
          }
+    });
+
+    // When a click event occurs on a feature in the places layer, open a popup at the
+    // location of the feature, with name HTML from its properties.
+    mapboxglmap.on('click', 'crossings', function (e) {
+        new mapboxgl.Popup()
+            .setLngLat(e.features[0].geometry.coordinates)
+            .setHTML(e.features[0].properties.name)
+            .addTo(mapboxglmap);
+    });
+
+    // Change the cursor to a pointer when the mouse is over the places layer.
+    mapboxglmap.on('mouseenter', 'crossings', function () {
+        mapboxglmap.getCanvas().style.cursor = 'pointer';
+    });
+
+    // Change it back to a pointer when it leaves.
+    mapboxglmap.on('mouseleave', 'crossings', function () {
+        mapboxglmap.getCanvas().style.cursor = '';
     });
 });
