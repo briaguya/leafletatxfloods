@@ -7,7 +7,8 @@
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
   crossorigin="anonymous"></script>
 
-<div id="mapid"></div>
+<div id="leafletmap"></div>
+<div id="googlemap"></div>
 <form>
   <input type="radio" name="status" value="on"> Open 
   <input type="radio" name="status" value="off"> Closed
@@ -15,3 +16,6 @@
 </form>
 
 <script src="./leafletatxfloods.js"></script>
+<script src="./gmapsatxfloods.js"></script>
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkNWv2Nne_Fku7jFgXfezwcIStU0nf1WI&callback=initMap"></script>

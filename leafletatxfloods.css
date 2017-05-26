@@ -1,1 +1,9 @@
-#mapid { height: 600px; }*/
+#leafletmap {
+  height: 600px;
+  width: 90%;
+}
+
+#googlemap { 
+  height: 600px;
+  width: 90%;
+}
