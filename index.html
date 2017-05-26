@@ -1,5 +1,7 @@
 <link rel="stylesheet" href="./leafletatxfloods.css" />
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+<link href='https://api.mapbox.com/mapbox-gl-js/v0.37.0/mapbox-gl.css' rel='stylesheet' />
+<script src='https://api.mapbox.com/mapbox-gl-js/v0.37.0/mapbox-gl.js'></script>
 <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
 <script src="./leaflet-providers.js"></script>
 <script
@@ -9,6 +11,7 @@
 
 <div id="leafletmap"></div>
 <div id="googlemap"></div>
+<div id="mapboxglmap"></div>
 <form>
   <input type="radio" name="status" value="on"> Open 
   <input type="radio" name="status" value="off"> Closed
@@ -17,5 +20,6 @@
 
 <script src="./leafletatxfloods.js"></script>
 <script src="./gmapsatxfloods.js"></script>
+<script src="./mapboxglatxfloods.js"></script>
 
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkNWv2Nne_Fku7jFgXfezwcIStU0nf1WI&callback=initMap"></script>
